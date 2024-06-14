@@ -3,7 +3,7 @@
  FileName:        main.c
  Dependencies:    p33FJ256GP710.h
  Processor:       dsPIC33F
- Compiler:        MPLABÆ C30 v2.01 or higher
+ Compiler:        MPLAB¬Æ C30 v2.01 or higher
 
  Ejemplo de funcionamiento de:
  	Timer1
@@ -17,10 +17,10 @@
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  Richard Fischer   07/14/05  Initial Release
  Priyabrata Sinha  01/27/06  Ported to non-prototype devices 
- Ricardo LÛpez     05/24/10  AdaptaciÛn para uso general
- Sebasti·n Wahler  08/05/13  Nuevas adaptaciones
- Marcelo GÛmez     09/03/14  Portado a MPLAB.X
- Sebasti·n Wahler  04/06/19  Simplificado sin Placa
+ Ricardo L√≥pez     05/24/10  Adaptaci√≥n para uso general
+ Sebasti√°n Wahler  08/05/13  Nuevas adaptaciones
+ Marcelo G√≥mez     09/03/14  Portado a MPLAB.X
+ Sebasti√°n Wahler  04/06/19  Simplificado sin Placa
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 **********************************************************************/
@@ -181,7 +181,7 @@ void verificarMensaje(){
 
 void armarMensajeD() {
     unsigned int bccl,bcch= 0;
-    unsigned int checksum;
+    unsigned int checksum;//checksum
     unsigned int i = 0;
     unsigned int j = 0;
 
@@ -262,7 +262,7 @@ void encenderCamara(){
 }
 /*---------------------------------------------------------------------
   Function Name: resetear
-  Description:   Resetea la cantidad de vehÌculos a 0 y borrar todos los registros.
+  Description:   Resetea la cantidad de veh√≠culos a 0 y borrar todos los registros.
   Precondiciones: --
   Poscondiciones: --
 -----------------------------------------------------------------------*/
@@ -288,24 +288,24 @@ void resetear(){
 void procesarMensaje(){
     switch(msEnviar) {
         case 'A': 
-            armarMensaje(9,nAuto);//Consultar cantidad de vehÌculos hasta el momento.
+            armarMensaje(9,nAuto);//Consultar cantidad de veh√≠culos hasta el momento.
             IFS1bits.U2TXIF = 1; // Interrupt request has occurred
             break;
         case 'B': 
-            resetear();//Resetear la cantidad de vehÌculos a 0 y borrar todos los registros.
+            resetear();//Resetear la cantidad de veh√≠culos a 0 y borrar todos los registros.
             armarMensaje(8,46);//ACK
             IFS1bits.U2TXIF = 1; // Interrupt request has occurred
             break;
         case 'C': 
-            armarMensaje(9,masDeDosEjes);//Consultar cantidad de vehÌculos con m·s de dos ejes.
+            armarMensaje(9,masDeDosEjes);//Consultar cantidad de veh√≠culos con m√°s de dos ejes.
             IFS1bits.U2TXIF = 1; // Interrupt request has occurred
             break;
         case 'D': 
-            armarMensajeD();//Consulta detallada de vehÌculos que pasaron en una determinada hora.
+            armarMensajeD();//Consulta detallada de veh√≠culos que pasaron en una determinada hora.
             IFS1bits.U2TXIF = 1; // Interrupt request has occurred
             break;
         case 'E': 
-            encenderCamara();//Accionar la c·mara fotogr·fica.
+            encenderCamara();//Accionar la c√°mara fotogr√°fica.
             armarMensaje(8,46);//ACK
             IFS1bits.U2TXIF = 1; // Interrupt request has occurred
             break;
